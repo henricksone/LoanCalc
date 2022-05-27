@@ -2,7 +2,7 @@
 <html lang="en" class="h-100">
 
 <head>
-    <title>App Name: A Coding Project by Henricksone</title>
+    <title>LOAN CALC: A Coding Project by Henricksone</title>
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -24,7 +24,7 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">
-            <img src="/img/EH-Logo.png" class="d-inline-block align-text-top" alt="Henricksone Logo" height="24"> APP NAME</a>
+            <img src="/img/EH-Logo.png" class="d-inline-block align-text-top" alt="Henricksone Logo" height="24"> LOAN CALC</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
             aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -54,7 +54,66 @@
     <!-- === Main === -->
     <main class="flex-shrink-0">
        <div class="container">
+            <div class="row">
+                <!-- inputs -->
+                <div class="col-3 p-3 mb-2 border">
+                    <form class="vstack">
+                        <label for="famount">Loan Amount</label>
+                        <input type="number" id="famount" name="famount" value="25000"><br>
+                        <label for="fterm">Term (Months)</label>
+                        <input type="number" id="fterm" name="fterm" value="60"><br>
+                        <label for="frate">Interest Rate</label>
+                        <input type="number" id="frate" name="frate" value="5"><br>
+                        <div class="d-flex">
+                            <input type="button" id="btnSubmit" class="btn btn-primary" value="Calculate">
+                        </div>
+                      </form>
+                </div>
+                <!-- summary -->
+                <div class="col-9 mb-2 p-3 border">
+                    <div class="row d-flex flex-column" style="height: 100%;">
+                        <div class="col-12 mb-auto">
+                            <h3 class="d-flex justify-content-center">Your Monthly Payments</h3>
+                            <div id="tmp" class="d-flex justify-content-center display-4 fw-bold">
+                                <!-- Total Monthly Payment -->
+                            </div>
+                        </div>
 
+                        <div class="col-12">
+                            <div class="d-flex justify-content-between">
+                                <div>Total Principle</div>
+                                <div id="amt"><!-- Total Principle --></div>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <div>Total Interest</div>
+                                <div id="int"><!-- Total Interest --></div>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <div>Total Cost</div>
+                                <div id="cst"><!-- Total Cost --></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- results table -->
+                <div class="col-12 border">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Month</th>
+                                <th>Payment</th>
+                                <th>Principle</th>
+                                <th>Interest</th>
+                                <th>Total Interest</th>
+                                <th>Balance</th>
+                            </tr>
+                        </thead>
+                        <tbody id="resultTable">
+                            <!-- Results here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
        </div>
     </main>
 
@@ -83,6 +142,7 @@
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
     </script>
     <script src="/js/site.js"></script>
+    <script>document.getElementById("btnSubmit").addEventListener("click",main);</script>
 </body>
 
 </html>
