@@ -59,16 +59,78 @@
            <div class="row row-cols-1 row-cols-lg-2">
                <div class="col-lg-8">
                    <pre class="line-numbers"><code class="language-javascript">
-                    // Call Hello World
-                    function HelloWorld(){
-                        alert("hello World");
-                    }
+
+// Main
+function main(){
+    displayResults(calcValues(getValues()));
+}
+
+// get the user inputs
+function getValues(){
+    let loanValues = {};
+    loanValues.amount = parseFloat(document.getElementById("famount").value);
+    loanValues.term = parseFloat(document.getElementById("fterm").value);
+    loanValues.rate = parseFloat(document.getElementById("frate").value);
+    return loanValues
+}
+
+// calculations
+function calcValues(loanValues){
+    
+    loanValues.tmp = loanValues.amount * (loanValues.rate/1200) 
+        / (1-Math.pow(1+loanValues.rate/1200,-loanValues.term));
+    return loanValues
+}
+
+// display results
+function displayResults(loanValues){
+    document.getElementById("tmp").innerHTML = `$${(loanValues.tmp).toFixed(2)}`;
+    document.getElementById("amt").innerHTML = `$${(loanValues.amount).toFixed(2)}`;
+    document.getElementById("int").innerHTML = `$${((loanValues.tmp *loanValues.term)-loanValues.amount).toFixed(2)}`;
+    document.getElementById("cst").innerHTML = `$${(loanValues.tmp * loanValues.term).toFixed(2)}`;
+    let balance = parseFloat(loanValues.amount);
+    let totint = parseFloat(0);
+    let resultTable = "";
+    for (let i = 1; i &lt;= loanValues.term; i++) {
+        let month = i;
+        let payment = parseFloat(loanValues.tmp);
+        let principle = parseFloat(loanValues.tmp-balance*loanValues.rate/1200);
+        let interest = parseFloat(balance*loanValues.rate/1200);
+        totint += interest;
+        balance = (balance-principle);
+        resultTable += `&lt;tr>&lt;td>${month}&lt;/td>&lt;td>${payment.toFixed(2)}&lt;/td>&lt;td>${principle.toFixed(2)}&lt;/td>
+            &lt;td>${interest.toFixed(2)}&lt;/td>&lt;td>${totint.toFixed(2)}&lt;/td>&lt;td>${balance.toFixed(2)}&lt;/td>&lt;/tr>`
+        
+    };
+    document.getElementById("resultTable").innerHTML = resultTable;
+}
+                   
                    </code></pre>
                </div>
                <div class="col-lg-4">
-                   <p>The Code is structured in one function.</p>
-                   <h5>Hello World</h5>
-                   <p>Hello World is a function that displays an alert with a message of "Hello World".</p>
+                   <p>The Code is structured in four functions.</p>
+                   <h5>main()</h5>
+                   <p>The main() function calls each of the 3 functions and passes the results into 
+                       the next.
+                   </p>
+                   <h5>getValues()</h5>
+                   <p>The getValues() function creates an empty loanValues Object. It then gets the 3
+                       user imputs and stores them in the Object as the properties: .amount, .term,
+                        .rate.  It passes the Object to calcValues(). 
+                   </p>
+                   <h5>calcValues()</h5>
+                   <p>The calcValues() function performs math to calculate the Total Monthly Payment (tmp)
+                       and stores it as a new property on loanValues Object. It passes teh Object to 
+                       displayResults().
+                   </p>
+                   <h5>displayResults()</h5>
+                   <p>The displayResults() function does some math and modifies the following HTML Elements: 
+                       .tmp (total monthly payment), .amt (total principle), .int (total interest), and 
+                       .cst (total cost). <br><br> To make the amoritization table, it loops through the
+                       number of months, calculates the payment, principle, and interest, running interest, 
+                       and running balance and then creates a row in a table that is saved to a variable 
+                       resultTable. When the loop exits, the Table is pushed to the HTML. 
+                   </p>
                </div>
            </div>
        </div>
