@@ -52,12 +52,12 @@
 </nav>
 
     <!-- === Main === -->
-    <main class="flex-shrink-0">
-       <div class="container">
+    <main class="flex">
+       <div class="container mt-5">
             <div class="row">
                 <!-- inputs -->
-                <div class="col-3 p-3 mb-2 border">
-                    <form class="vstack">
+                <div class="col-3 p-2 border">
+                    <form class="d-flex flex-column">
                         <label for="famount">Loan Amount</label>
                         <input type="number" id="famount" name="famount" value="25000"><br>
                         <label for="fterm">Term (Months)</label>
@@ -67,10 +67,10 @@
                         <div class="d-flex">
                             <input type="button" id="btnSubmit" class="btn btn-primary" value="Calculate">
                         </div>
-                      </form>
+                    </form>
                 </div>
                 <!-- summary -->
-                <div class="col-9 mb-2 p-3 border">
+                <div class="col-9 p-2 border">
                     <div class="row d-flex flex-column" style="height: 100%;">
                         <div class="col-12 mb-auto">
                             <h3 class="d-flex justify-content-center">Your Monthly Payments</h3>
@@ -96,7 +96,7 @@
                     </div>
                 </div>
                 <!-- results table -->
-                <div class="col-12 border">
+                <div class="col-12 p-2 border">
                     <table class="table table-striped">
                         <thead>
                             <tr>
